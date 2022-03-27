@@ -1,0 +1,14 @@
+@import '../components/question';
+
+.category_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .page {
+        background-color: white;
+        border-radius: 5px;
+        padding: .5em 1em;
+        font-weight: 600;
+    }
+}

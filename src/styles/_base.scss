@@ -1,27 +1,9 @@
 @import './variables/colors';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import './variables/fonts';
+
 
 body {
     background: $cl-bg;
     color: $cl-text;
-    font-family: 'Poppins', sans-serif;
-}
-
-h1 { text-align: center; display: block; margin: auto; }
-
-h2 {
-    font-weight: 600;
-}
-
-.category_info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .page {
-        background-color: white;
-        border-radius: 5px;
-        padding: .5em 1em;
-        font-weight: 600;
-    }
+    font-family: $ff;
 }
