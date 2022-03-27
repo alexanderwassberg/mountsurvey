@@ -2,69 +2,71 @@ var data = {"locale":"sv","title":"Ångest","logoPosition":"right","pages":[{"na
 var pages = data.pages;
 
 // Appends
-var titleEl = document.getElementById('title')
-var pageEl = document.getElementById('page')
-titleEl.innerText = data.title;
+var subject = document.getElementById('title')
+var pageNr = document.getElementById('page')
+subject.innerText = data.title;
 
 function renderPages(nr) {
 
-    // If the page does not exist
-    if (nr >= pages.length) { console.log('End of pages'); getScore() }
+    // End of pages
+    if (nr >= pages.length) { console.log('End of pages'); getScore(); return }
+
+    var pageContainer = document.createElement("ul");
+    pageContainer.classList.add('questions')
     
-    else {
+    pages[nr].elements.forEach((element) => {
 
-        var pageContainer = document.createElement("ul");
-        pageContainer.classList.add('questions')
-        
-        pages[nr].elements.forEach((element) => {
-            pageEl.innerText = pages[nr].name;
-            var qTitle = element.title;
-            var qTitleEl = document.createElement("li");
-            qTitleEl.classList.add('question')
-            qTitleEl.innerText = qTitle;
+        var question = element.title;
 
-            pageContainer.appendChild(qTitleEl);
-            var rateContainer = document.createElement('div')
-            rateContainer.classList.add('ratecontainer')
+        // Adds page nr
+        pageNr.innerText = 'Sida ' + [nr + 1];
 
-            element.rateValues.forEach((rate) => {
+        // Question List
+        var qList = document.createElement("li");
+        qList.classList.add('question')
+        qList.innerText = question;
 
-                var uniqueId = element.name + rate.value
 
-                var rateInput = document.createElement('input')
-                rateInput.type = 'radio';
-                rateInput.value = rate.value -1;
-                rateInput.id = uniqueId;
-                rateInput.name = 'rate' + element.name;
+        pageContainer.appendChild(qList);
+        var rateContainer = document.createElement('div')
+        rateContainer.classList.add('ratecontainer')
 
-                var rateLabel = document.createElement('label')
-                rateLabel.innerText = rate.text
-                rateLabel.htmlFor = uniqueId;
+        element.rateValues.forEach((rate) => {
 
-                qTitleEl.appendChild(rateContainer)
-                rateContainer.appendChild(rateInput)
-                rateContainer.appendChild(rateLabel)
+            var uniqueId = element.name + rate.value
 
-                rateInput.addEventListener('click', function(){
-                    rateInput.classList.add('active')
-                })
+            var rateInput = document.createElement('input')
+            rateInput.type = 'radio';
+            rateInput.value = rate.value -1;
+            rateInput.id = uniqueId;
+            rateInput.name = 'rate' + element.name;
 
+            var rateLabel = document.createElement('label')
+            rateLabel.innerText = rate.text
+            rateLabel.htmlFor = uniqueId;
+
+            qList.appendChild(rateContainer)
+            rateContainer.appendChild(rateInput)
+            rateContainer.appendChild(rateLabel)
+
+            rateInput.addEventListener('click', function(){
+                rateInput.classList.add('active')
             })
 
         })
 
-        document.querySelector('.container').appendChild(pageContainer);
+    })
 
-        var nextPageBtn = document.createElement('button')
-        nextPageBtn.innerText = 'Nästa sida';
-        pageContainer.appendChild(nextPageBtn)
-    
-        nextPageBtn.addEventListener('click', function(){
-            renderPages(nr + 1)
-            pageContainer.classList.add('hide')
-        })
+    document.querySelector('.container').appendChild(pageContainer);
 
-    }
+    var nextPageBtn = document.createElement('button')
+    nextPageBtn.innerText = 'Nästa sida';
+    pageContainer.appendChild(nextPageBtn)
+
+    nextPageBtn.addEventListener('click', function(){
+        renderPages(nr + 1)
+        pageContainer.classList.add('hide')
+    })
 }
 
 function getScore(){
@@ -86,7 +88,8 @@ function getScore(){
 
     document.querySelector('.container').appendChild(resultHeader)
 
+    page.style.display = 'none';
 
-};
+}
 
 renderPages(0)
