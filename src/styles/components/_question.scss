@@ -1,5 +1,27 @@
-.questions.hide { display: none }
+.questions {
+    padding: 0; 
+    list-style: none;
 
-.questions { padding: 0; list-style: none; }
+    &.hide {
+        display: none;
+    }
 
-.question { margin-bottom: 10px; }
+    .question {
+        margin-bottom: 20px;
+
+        p {
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+
+        .rate-container {
+            display: flex;
+            flex-flow: column;
+
+            .rate {
+                display: flex;
+                flex-flow: row;
+            }
+        }
+    }
+}
