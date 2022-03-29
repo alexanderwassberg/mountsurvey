@@ -1,20 +1,31 @@
-var data = {"locale":"sv","title":"Ångest","description":{"sv":"Vägledande test för att upptäcka personer som har ångestsyndrom so kan beskrivas som GAD"},"logoPosition":"right","pages":[{"name":"Sida 1","elements":[{"type":"rating","name":"question9","title":"Har du under de senaste 2 veckorna besvärats av något av följande?","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]},{"type":"rating","name":"question1","title":"Känt mig nervös, orolig, spänd","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]},{"type":"rating","name":"question8","title":"Inte kunnat låta bli att ängslas","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]},{"type":"rating","name":"question7","title":"Ängslats för mycket av olika saker","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]}],"title":"GAD-7","description":"Vägledande test för att upptäcka personer som har ångestsyndrom so kan beskrivas som GAD"},{"name":"Sida 2","elements":[{"type":"rating","name":"question6","title":"Haft svårt att koppla av","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]},{"type":"rating","name":"question5","title":"Varit så rastlös att du har haft svårt att sitta still","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]},{"type":"rating","name":"question4","title":"Varit retad och lättkörd","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]},{"type":"rating","name":"question3","title":"Varit rädd, som om något förfärligt skulle kunna hända","rateValues":[{"value":1,"text":"Inte alls"},{"value":2,"text":"Flera dagar"},{"value":3,"text":"Flertalet dagar"},{"value":4,"text":"Så gott som dagligen"}]}],"title":"GAD-7"}],"sendResultOnPageNext":true,"showPageNumbers":true,"startSurveyText":"Starta","pagePrevText":"Tidigare sida","pageNextText":"Nästa sida","completeText":"Färdigställ","previewText":"Tidigare"};
-var pages = data.pages;
+function getSurvey(id) {
+    fetch('https://api.surveyjs.io/public/Survey/getSurvey?surveyId={' + id + '}')
+        .then(response => response.json())
+        .then(data => {
+            useSurvey(data);
+        });
+}
 
-// Appends
-var subject = document.getElementById('title')
-var description = document.getElementById('description')
-var pageNr = document.getElementById('page')
-subject.innerText = data.title;
-description.innerText = data.description.sv
+function useSurvey(data) {
 
-var startBtn = document.getElementById('startBtn')
-startBtn.innerText = data.startSurveyText
+    var pages = data.pages;
 
-startBtn.addEventListener('click', function() {
-    this.style.display = 'none'
-    renderPages(0)
-})
+    // Appends
+    var subject = document.getElementById('title')
+    var description = document.getElementById('description')
+    var pageNr = document.getElementById('page')
+    subject.innerText = data.title;
+    description.innerText = data.description.sv
+
+    var startBtn = document.getElementById('startBtn')
+    startBtn.innerText = data.startSurveyText
+
+    startBtn.addEventListener('click', function() {
+        this.style.display = 'none'
+        renderPages(0)
+    })
+
+}
 
 function renderPages(nr) {
 
