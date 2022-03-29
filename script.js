@@ -2,45 +2,37 @@ function getSurvey(id) {
     fetch('https://api.surveyjs.io/public/Survey/getSurvey?surveyId={' + id + '}')
         .then(response => response.json())
         .then(data => {
-            useSurvey(data);
+            var subject = document.getElementById('title')
+            var description = document.getElementById('description')
+            subject.innerText = data.title;
+            description.innerText = data.description.sv
+
+            var startBtn = document.getElementById('startBtn')
+            startBtn.innerText = data.startSurveyText
+            startBtn.addEventListener('click', function() {
+                this.style.display = 'none'
+                renderPages(0, data);
+            })
         });
 }
 
-function useSurvey(data) {
-
-    var pages = data.pages;
+function renderPages(nr, data) {
 
     // Appends
-    var subject = document.getElementById('title')
-    var description = document.getElementById('description')
-    var pageNr = document.getElementById('page')
-    subject.innerText = data.title;
-    description.innerText = data.description.sv
-
-    var startBtn = document.getElementById('startBtn')
-    startBtn.innerText = data.startSurveyText
-
-    startBtn.addEventListener('click', function() {
-        this.style.display = 'none'
-        renderPages(0)
-    })
-
-}
-
-function renderPages(nr) {
 
     // End of pages
-    if (nr >= pages.length) { console.log('End of pages'); getScore(); return }
+    if (nr >= data.pages.length) { console.log('End of pages'); getScore(); return }
 
     var pageContainer = document.createElement("ul");
     pageContainer.classList.add('questions')
     
-    pages[nr].elements.forEach((element) => {
+    data.pages[nr].elements.forEach((element) => {
 
         var question = element.title;
+        var pageNr = document.getElementById('page')
 
         // Adds page nr
-        pageNr.innerText = 'Sida ' + [nr + 1];
+        pageNr.innerText = 'Sida ' + nr + 1;
 
         // Question List
         var qList = document.createElement('li');
