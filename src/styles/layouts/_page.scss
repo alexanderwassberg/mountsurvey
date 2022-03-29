@@ -10,5 +10,7 @@
         border-radius: 5px;
         padding: .5em 1em;
         font-weight: 600;
+
+        &:empty { display: none; }
     }
 }
