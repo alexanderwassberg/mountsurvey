@@ -8,6 +8,14 @@ var pageNr = document.getElementById('page')
 subject.innerText = data.title;
 description.innerText = data.description.sv
 
+var startBtn = document.getElementById('startBtn')
+startBtn.innerText = data.startSurveyText
+
+startBtn.addEventListener('click', function() {
+    this.style.display = 'none'
+    renderPages(0)
+})
+
 function renderPages(nr) {
 
     // End of pages
@@ -107,21 +115,12 @@ function getScore(){
 }
 
 function interpretScore(score) {
-    var interpet = document.getElementById('interpet')
 
+    var interpet = document.getElementById('interpet')
     var levels = ['Du lider av mild ångest', 'Du lider av medelmåttlig ångest', 'Du lider av allvarlig ångest']
 
-    if(score <= 5) {
-        interpet.innerText = levels[0]
-    }
-    if(score >= 6 && score <= 14) {
-        interpet.innerText = levels[1]
-    }
-    if(score >= 15) {
-        interpet.innerText = levels[2]
-    }
+    if(score <= 5) { interpet.innerText = levels[0] }
+    if(score >= 6 && score <= 14) { interpet.innerText = levels[1] }
+    if(score >= 15) { interpet.innerText = levels[2] }
 
-    
 }
-
-renderPages(0)
