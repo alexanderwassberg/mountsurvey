@@ -16,6 +16,23 @@ function getSurvey(id) {
         });
 }
 
+var surveys = [
+    { title: 'Ångest', id: '11f8c383-ccd9-4726-b521-6b4f3fea7b2b' },
+    { title: 'Depression', id: '801459b2-fcf1-4626-9e6f-ec736131535b' }
+]
+
+surveys.forEach((survey) => {
+    var menu = document.getElementById('menu')
+    var menuItem = document.createElement('li')
+    var menuItemA = document.createElement('a')
+    menuItemA.href = survey.id
+    menuItemA.innerText = survey.title
+
+    menuItem.appendChild(menuItemA)
+    menu.appendChild(menuItem)
+    
+})
+
 function renderPages(nr, data) {
 
     // Appends
@@ -87,7 +104,7 @@ function renderPages(nr, data) {
 
     nextPageBtn.addEventListener('click', function(){
         pageContainer.classList.add('hide')
-        renderPages(nr + 1)
+        renderPages(nr + 1, data)
     })
 }
 
@@ -123,7 +140,7 @@ function interpretScore(score) {
     var levels = ['Du lider av mild ångest', 'Du lider av medelmåttlig ångest', 'Du lider av allvarlig ångest']
 
     if(score <= 5) { interpet.innerText = levels[0] }
-    if(score >= 6 && score <= 14) { interpet.innerText = levels[1] }
-    if(score >= 15) { interpet.innerText = levels[2] }
+    else if(score >= 6 && score <= 14) { interpet.innerText = levels[1] }
+    else { interpet.innerText = levels[2] }
 
 }
