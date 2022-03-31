@@ -1,3 +1,4 @@
+import { owo } from './src/script/functions.js';
 import { getSurvey } from './src/script/getSurvey.js';
 
 // API ID's from surveyjs
@@ -10,16 +11,10 @@ var surveys = [
 
 // Loops through available categories based on "surveys"
 surveys.forEach((survey) => {
-    const menu = document.getElementById('menu')
-    const menuItem = document.createElement('li')
-    const menuItemBtn = document.createElement('button')
-    menuItemBtn.innerText = survey.title
-    menuItemBtn.classList.add('btn')
+    var link = owo("button", {class:"btn"}, owo("li", {}, "#menu"))
+    link.innerText = survey.title
 
-    menuItem.appendChild(menuItemBtn)
-    menu.appendChild(menuItem)
-
-    menuItemBtn.addEventListener('click', function() {
+    link.addEventListener('click', function() {
         getSurvey(survey.id)
     })
 })
