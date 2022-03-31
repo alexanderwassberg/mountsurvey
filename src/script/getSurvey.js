@@ -7,7 +7,7 @@ export function getSurvey(id) {
             const subject = document.getElementById('title')
             const description = document.getElementById('description')
             subject.innerText = data.title;
-            description.innerText = data.description.sv
+            description.innerText = data.description
 
             const startBtn = document.getElementById('startBtn')
             startBtn.style.display = 'block'

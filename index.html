@@ -5,14 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./src/styles/main.css">
+    <link rel="stylesheet" href="./src/styles/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
 
         <header>
-            <h2>HälsoSam.</h2>
-            <ul id="menu"></ul>
+            <h2 onclick="location.reload()">HälsoSam.</h2>
+            <i id="bars" onclick="menuToggle()" class="fa fa-bars"></i>
+            <ul id="menu">
+                <i id="close" class="fa fa-times"></i>
+            </ul>
         </header>
 
         <div class="category_info">
@@ -28,6 +32,7 @@
             <h3 id="interpet"></h3>
         </div>
     </div>
+<script src="./src/script/globals.js"></script>
 <script src="main.js" type="module" defer></script>
 </body>
 </html>

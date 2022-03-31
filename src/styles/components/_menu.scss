@@ -1,11 +1,36 @@
 header {
+
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+    .fa-bars { font-size: 24px; }
+
     #menu {
-        display: flex;
-        flex-flow: row;
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgb(40, 61, 40);
+        flex-flow: column;
         list-style: none;
         gap: 1em;
         margin: 0;
         padding: 0;
-        flex-wrap: wrap;
+        padding: 2em;
+
+        .fa-times {
+            color: white;
+            font-size: 28px;
+            margin: 0 auto 2em auto;
+        }
+
+        &.active {
+            display: flex;
+        }
     }
 }

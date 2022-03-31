@@ -18,6 +18,8 @@ export function getScore(){
     
     page.style.display = 'none';
     description.style.display = 'none';
+    var resultElem = document.getElementById('result')
+    resultElem.classList.remove('hide')
 
     interpretScore(result)
 
