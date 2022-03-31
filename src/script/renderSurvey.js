@@ -1,3 +1,4 @@
+import { owo } from './functions.js';
 import { getScore } from './result.js';
 
 export function renderSurvey(nr, data) {
@@ -11,21 +12,14 @@ export function renderSurvey(nr, data) {
     data.pages[nr].elements.forEach((element) => {
 
         const question = element.title;
-        const pageNr = document.getElementById('page')
+        const pageElem = document.getElementById('page')
         const pageNumber = nr + 1;
 
         // Adds page nr
-        pageNr.innerText = 'Sida ' + pageNumber;
+        pageElem.innerText = 'Sida ' + pageNumber;
 
-        // Question List
-        const qList = document.createElement('li');
-        qList.classList.add('question')
-
-        const paragraph = document.createElement('p')
-        paragraph.innerText = question
-        
-        pageContainer.appendChild(qList);
-        qList.appendChild(paragraph);
+        const questionItem = owo("p", {}, owo("li", {class:'question'}, pageContainer))
+        questionItem.innerText = question
 
         const rateContainer = document.createElement('div')
         rateContainer.classList.add('rate-container')
@@ -47,7 +41,7 @@ export function renderSurvey(nr, data) {
             rate = document.createElement('div')
             rate.classList.add('rate')
 
-            qList.appendChild(rateContainer)
+            questionItem.appendChild(rateContainer)
             rate.appendChild(rateInput)
             rate.appendChild(rateLabel)
             rateContainer.appendChild(rate)

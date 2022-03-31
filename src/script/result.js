@@ -1,3 +1,5 @@
+import { owo } from './functions.js';
+
 export function getScore(){
 
     const selected = document.querySelectorAll("input");
@@ -13,14 +15,9 @@ export function getScore(){
     const initialValue = 0;
 
     let result = totalsArray.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
-
-    const resultHeader = document.createElement('h3')
-    resultHeader.innerText = 'Total poäng: ' + result
-
-    document.querySelector('.container').appendChild(resultHeader)
     
     page.style.display = 'none';
-    description.style.display = 'none'
+    description.style.display = 'none';
 
     interpretScore(result)
 
@@ -30,7 +27,10 @@ export function interpretScore(score) {
 
     const interpet = document.getElementById('interpet')
     const levels = ['Du lider av mild ångest', 'Du lider av medelmåttlig ångest', 'Du lider av allvarlig ångest']
-
+    
+    const resultHeader = owo("h3", {}, '.interpet')
+    resultHeader.innerText = 'Total poäng: ' + result;
+    
     if(score <= 5) { interpet.innerText = levels[0] }
     else if(score >= 6 && score <= 14) { interpet.innerText = levels[1] }
     else { interpet.innerText = levels[2] }
