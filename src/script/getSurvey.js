@@ -14,7 +14,6 @@ export function getSurvey(id) {
             startBtn.innerText = data.startSurveyText
             startBtn.addEventListener('click', function() {
                 this.style.display = 'none'
-
                 // Renders the first page of the current survey
                 renderSurvey(0, data);
             })

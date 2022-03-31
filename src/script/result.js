@@ -28,8 +28,8 @@ export function interpretScore(score) {
     const interpet = document.getElementById('interpet')
     const levels = ['Du lider av mild ångest', 'Du lider av medelmåttlig ångest', 'Du lider av allvarlig ångest']
     
-    const resultHeader = owo("h3", {}, '.interpet')
-    resultHeader.innerText = 'Total poäng: ' + result;
+    const resultHeader = owo("h3", {}, '#result')
+    resultHeader.innerText = 'Total poäng: ' + score;
     
     if(score <= 5) { interpet.innerText = levels[0] }
     else if(score >= 6 && score <= 14) { interpet.innerText = levels[1] }
