@@ -10,5 +10,6 @@ surveys().forEach((survey) => {
     link.addEventListener('click', function() {
         getSurvey(survey.id)
         document.querySelector('main').innerHTML = '';
+        document.querySelector('.sam').remove()
     })
 })

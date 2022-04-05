@@ -11,6 +11,11 @@
         color: $cl-white;
         background-color: $cl-red-medium;
         transition: opacity 100ms ease-in-out;
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
     }
 
     &:hover {

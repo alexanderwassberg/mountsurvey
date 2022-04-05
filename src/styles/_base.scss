@@ -6,4 +6,10 @@ body {
     background: $cl-red-light;
     color: $cl-red-medium;
     font-family: $ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
 }

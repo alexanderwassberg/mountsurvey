@@ -16,9 +16,6 @@ export function getScore(){
 
     let result = totalsArray.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
     
-    var resultElem = document.getElementById('result')
-    resultElem.classList.remove('hide')
-
     interpretScore(result)
 
 }
