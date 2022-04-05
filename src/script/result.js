@@ -16,8 +16,6 @@ export function getScore(){
 
     let result = totalsArray.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
     
-    page.style.display = 'none';
-    description.style.display = 'none';
     var resultElem = document.getElementById('result')
     resultElem.classList.remove('hide')
 

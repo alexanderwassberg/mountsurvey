@@ -1,21 +1,29 @@
 import { renderSurvey } from "./renderSurvey.js";
+import { owo } from './functions.js';
 
 export function getSurvey(id) {
     fetch('https://api.surveyjs.io/public/Survey/getSurvey?surveyId={' + id + '}')
         .then(response => response.json())
         .then(data => {
-            const subject = document.getElementById('title')
-            const description = document.getElementById('description')
-            subject.innerText = data.title;
+            console.log(data);
+
+            const subject = owo("h2", {class:"title"}, "main")
+            subject.innerText = data.title
+
+            const description = owo("p", {class:"description"}, "main")
             description.innerText = data.description
 
-            const startBtn = document.getElementById('startBtn')
+            const startBtn = owo("button", {class:"btn next"}, "main")
             startBtn.style.display = 'block'
+
+            if(data.startSurveyText == undefined) { data.startSurveyText = 'Starta' }
             startBtn.innerText = data.startSurveyText
+
             startBtn.addEventListener('click', function() {
-                this.style.display = 'none'
-                // Renders the first page of the current survey
-                renderSurvey(0, data);
+                renderSurvey(0, data)
+                description.remove()
+                startBtn.remove()
+                document.getElementById('menu').remove()
             })
         });
 }

@@ -50,7 +50,7 @@ export function renderSurvey(nr, data) {
 
     })
 
-    document.querySelector('.container').appendChild(pageContainer);
+    document.querySelector('main').appendChild(pageContainer);
 
     const nextPageBtn = document.createElement('button')
     const currentPage = data.pages[nr].name.match(/\d+/g)
