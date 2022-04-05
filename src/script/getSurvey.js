@@ -14,7 +14,6 @@ export function getSurvey(id) {
             description.innerText = data.description
 
             const startBtn = owo("button", {class:"btn next"}, "main")
-            startBtn.style.display = 'block'
 
             if(data.startSurveyText == undefined) { data.startSurveyText = 'Starta' }
             startBtn.innerText = data.startSurveyText
