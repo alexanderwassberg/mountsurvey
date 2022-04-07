@@ -5,15 +5,7 @@
 @import 'components/menu';
 
 .container {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    padding: 10px;
     width: 100%;
-}
-
-.sam {
-    margin-bottom: 2em;
+    max-width: 30em;
+    padding: 10px;
 }
