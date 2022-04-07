@@ -1,15 +1,19 @@
 import { surveys } from './src/script/surveys.js';
-import { owo } from './src/script/functions.js';
+import { addSurveyName, owo } from './src/script/functions.js';
 import { getSurvey } from './src/script/getSurvey.js';
+
+// Enter the name of the Survey
+addSurveyName('MountSurvey')
 
 // Loops through available categories based on "surveys"
 surveys().forEach((survey) => {
-    var link = owo("button", {class:"btn"}, owo("li", {}, "#menu"))
+    const link = owo("button", {class:"btn"}, owo("li", {}, "#menu"))
     link.innerText = survey.title
 
     link.addEventListener('click', function() {
         getSurvey(survey.id)
-        document.querySelector('main').innerHTML = '';
-        document.querySelector('.sam').remove()
+
+        //Reset <main> if it had content before
+        document.querySelector('main').innerHTML = ''
     })
 })
